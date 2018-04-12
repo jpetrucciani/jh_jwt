@@ -2,7 +2,7 @@
 
 forked from mogthesprog/jwtauthenticator!
 
-[![PyPI version](https://badge.fury.io/py/jh_jwt.svg)](https://badge.fury.io/py/jh_jwt)
+[![PyPI version](https://badge.fury.io/py/jh-jwt.svg)](https://badge.fury.io/py/jh-jwt)
 
 Authenticate to Jupyterhub using a query parameter for the JSONWebToken, or by an authenticating proxy that can set the Authorization header with the content of a JSONWebToken.
 
@@ -17,7 +17,7 @@ pip install jh_jwt
 Alternately, you can clone this repository and run:
 
 ```
-cd jh_jwt
+cd jh-jwt
 pip install -e .
 ```
 
