@@ -1,0 +1,68 @@
+strictness: veryhigh
+doc-warnings: true
+member-warnings: false
+test-warnings: false
+
+ignore-patterns:
+  - (^|/)\..+
+  - .*/env/.*
+
+pylint:
+  disable:
+    - broad-except
+    - import-error
+    - import-self
+    - protected-access
+    - unsupported-membership-test
+    - wrong-import-order
+
+  options:
+    max-args: 14
+    max-locals: 25
+    max-returns: 6
+    max-branches: 30
+    max-statements: 180
+    max-parents: 10
+    max-attributes: 10
+    min-public-methods: 0
+    max-public-methods: 20
+    max-module-lines: 2000
+    max-line-length: 100
+
+mccabe:
+  options:
+    max-complexity: 14
+
+pep8:
+  disable:
+    - N802
+  options:
+    max-line-length: 100
+    single-line-if-stmt: n
+
+vulture:
+  run: false
+
+pyroma:
+  run: false
+  disable:
+    - PYR19
+    - PYR16
+
+pep257:
+  disable:
+    - D000
+    - D100
+    - D104
+    - D106
+    - D107
+    - D200
+    - D203
+    - D205
+    - D212
+    - D204
+    - D300
+    - D400
+    - D401
+    - D404
+    - D403

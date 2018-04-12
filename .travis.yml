@@ -1,0 +1,12 @@
+language: python
+python:
+- '3.6'
+script:
+- echo 'override'
+deploy:
+  provider: pypi
+  user: jacobi
+  on:
+    branch: master
+  password:
+    secure: OxpVlxw2c+Adq3CqOhRc2M5aCfL8GH0bvUp7mUHB1a1Ky+bFfOIWoAz0gShQBicdRksINfS0YmCLtFcXeASn3lWgw+EEtIvlvHSpQWGb6BfFnItxKru7P47sIOYqM0w0MsWDaguYz+/d0TP8HIWoS1ctilQlGHmH2vNq2PO61da5Pr9ygIL0a6J6GHxREloKHjKu3eKTPNkNRVB1sWlicRS0QIFvgTcw2ZNww/wuQtnVYgYJ2DU6UDhqgW6Ry8+FpMJoEPk75YEeQieAlGykzKx/NVxRJ8PlyK97ixblWFWWBosV2cOnrFYpaF6rA8XeCBW8FLUeSq6F3qL4lvK40WBZ3AmdRv2tZQzLMundgr6+c1mw3OfKPOHr+sqWlrN289txYclLe5OkXoX8EHlJLztiaTRaUYXxodjvxifeYTRtA7XhGiWZS0wxsYZKZGpOljQynsjjiER/kG9ajcb0VzuVIxb0T7B6Zi2hBxhnKOYLJsPwM4gjjoIzUQEVLf6enaGXFcrIIaR1hITCE9FAyWgwZAHekNBLIp/GoORcj7w3xa5VCADjPuYcO+Ro89KL0W0OqjIo/Shk8ebWJtPMH4249e6ZdKijySmDCZxVn9F3MMbtiMAzNS3WEQHOLrxEWCpgbeOrZnA0LqOM6DJv6YO1BwT6UC0e5EUIeSFgotI=
