@@ -31,7 +31,7 @@ class JSONWebTokenLoginHandler(BaseHandler):
     def get(self):
         header_name = self.authenticator.header_name
         param_name = self.authenticator.param_name
-
+        post_login_url = self.authenticator.post_login_url
         auth_header_content = self.request.headers.get(header_name, '')
         auth_cookie_content = self.get_cookie('XSRF-TOKEN', '')
         signing_certificate = self.authenticator.signing_certificate
@@ -76,9 +76,8 @@ class JSONWebTokenLoginHandler(BaseHandler):
         self.set_login_cookie(user)
 
         _url = url_path_join(self.hub.server.base_url, 'home')
-        next_url = self.get_argument('next', default=False)
-        if next_url:
-            _url = next_url
+        if post_login_url:
+            _url = url_path_join(self.hub.server.base_url, post_login_url)
 
         self.redirect(_url)
 
