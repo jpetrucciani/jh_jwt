@@ -75,9 +75,7 @@ class JSONWebTokenLoginHandler(BaseHandler):
         user = self.user_from_username(username)
         self.set_login_cookie(user)
 
-        _url = url_path_join(self.hub.server.base_url, 'home')
-        if post_login_url:
-            _url = url_path_join(self.hub.server.base_url, post_login_url)
+        _url = url_path_join(self.hub.server.base_url, post_login_url)
 
         self.redirect(_url)
 
@@ -128,6 +126,14 @@ class JSONWebTokenAuthenticator(Authenticator):
         help="""
         The field in the claims that contains the user name. It can be either a straight username,
         of an email/userPrincipalName.
+        """
+    )
+
+    post_login_url = Unicode(
+        default_value='home',
+        config=True,
+        help="""
+        Where to redirect the user after login
         """
     )
 
