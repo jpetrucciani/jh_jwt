@@ -6,7 +6,7 @@ from jupyterhub.auth import Authenticator
 from jupyterhub.auth import LocalAuthenticator
 from jupyterhub.utils import url_path_join
 from tornado import gen, web
-from traitlets import List, Unicode
+from traitlets import List, Unicode, Bool
 from jose import jwt
 
 
@@ -39,6 +39,9 @@ class JSONWebTokenLoginHandler(BaseHandler):
             token = tokenParam
         else:
             raise web.HTTPError(401)
+
+        if token and self.authenticator.logout_on_new_token:
+            self.clear_login_cookie()
 
         claims = {}
         if secret:
@@ -170,6 +173,12 @@ class JSONWebTokenAuthenticator(Authenticator):
         Use it to validate that a claim as the False value.
         For example 'restricted' claim should be false.
         """,
+    )
+
+    logout_on_new_token = Bool(
+        default_value=False,
+        config=True,
+        help="determines whether we logout before applying a new token",
     )
 
     def get_handlers(self, app):
