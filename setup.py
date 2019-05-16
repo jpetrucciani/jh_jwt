@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="jh_jwt",
-    version="0.0.7",
+    version="0.0.8",
     description="JSONWebToken Authenticator for JupyterHub",
     url="https://github.com/jpetrucciani/jh_jwt",
     author="mogthesprog, jpetrucciani",
