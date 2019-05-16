@@ -26,11 +26,8 @@ class JSONWebTokenLoginHandler(BaseHandler):
         tokenParam = self.get_argument(param_name, default=False)
 
         if auth_header_content and tokenParam:
-            print("auth 0")
             raise web.HTTPError(400)
         elif tokenParam and self.authenticator.logout_on_new_token:
-            print("auth 1")
-            self.clear_login_cookie()
             token = tokenParam
         elif auth_header_content:
             # we should not see 'token' as first word in the AUTHORIZATION header
@@ -39,13 +36,10 @@ class JSONWebTokenLoginHandler(BaseHandler):
                 raise web.HTTPError(403)
             token = auth_header_content.split()[1]
         elif auth_cookie_content:
-            print("auth 2")
             token = auth_cookie_content
         elif tokenParam:
-            print("auth 3")
             token = tokenParam
         else:
-            print("auth 4")
             raise web.HTTPError(401)
 
         claims = {}
@@ -68,6 +62,10 @@ class JSONWebTokenLoginHandler(BaseHandler):
         user = self.user_from_username(username)
         print("authed", username, user)
         self.set_login_cookie(user)
+        if self.authenticator.logout_on_new_token:
+            self.set_service_cookie(user)
+            self.set_session_cookie()
+            self.set_hub_cookie(user)
 
         _url = url_path_join(self.hub.server.base_url, post_login_url)
 
