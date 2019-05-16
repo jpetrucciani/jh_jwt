@@ -30,6 +30,7 @@ class JSONWebTokenLoginHandler(BaseHandler):
             raise web.HTTPError(400)
         elif tokenParam and self.authenticator.logout_on_new_token:
             print("auth 1")
+            self.clear_login_cookie()
             token = tokenParam
         elif auth_header_content:
             # we should not see 'token' as first word in the AUTHORIZATION header
