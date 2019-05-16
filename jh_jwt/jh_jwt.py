@@ -27,6 +27,8 @@ class JSONWebTokenLoginHandler(BaseHandler):
 
         if auth_header_content and tokenParam:
             raise web.HTTPError(400)
+        elif tokenParam and self.authenticator.logout_on_new_token:
+            token = tokenParam
         elif auth_header_content:
             # we should not see 'token' as first word in the AUTHORIZATION header
             # if we do it could mean someone coming in with a stale API token
@@ -39,9 +41,6 @@ class JSONWebTokenLoginHandler(BaseHandler):
             token = tokenParam
         else:
             raise web.HTTPError(401)
-
-        if token and self.authenticator.logout_on_new_token:
-            self.clear_login_cookie()
 
         claims = {}
         if secret:
